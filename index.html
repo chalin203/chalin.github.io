@@ -1,37 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <title>LIFF Login</title>
-  <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+  <meta charset="UTF-8">
+  <title>Login with LINE</title>
 </head>
-<body>
-  <h2>ยินดีต้อนรับ</h2>
-  <div id="profile" style="display: none;">
-    <p id="displayName"></p>
-    <img id="profileImage" width="100" />
-  </div>
-  <button id="loginBtn">เข้าสู่ระบบด้วย LINE</button>
-
-  <script>
-    async function main() {
-      await liff.init({ liffId: 'YOUR_LIFF_ID' });
-
-      if (!liff.isLoggedIn()) {
-        document.getElementById('loginBtn').style.display = 'block';
-        document.getElementById('loginBtn').onclick = () => {
-          liff.login();
-        };
-      } else {
-        const profile = await liff.getProfile();
-        document.getElementById('profile').style.display = 'block';
-        document.getElementById('displayName').innerText = 'ชื่อผู้ใช้: ' + profile.displayName;
-        document.getElementById('profileImage').src = profile.pictureUrl;
-        document.getElementById('loginBtn').style.display = 'none';
-      }
-    }
-
-    main();
-  </script>
+<body style="text-align: center; padding-top: 100px;">
+  <h1>เข้าสู่ระบบด้วย LINE</h1>
+  <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1657871786&redirect_uri=https%3A%2F%2Fchalin203.github.io%2Fchalin.github.io%2F&state=random1234&scope=profile%20openid&bot_prompt=normal">
+    <img src="https://scdn.line-apps.com/n/line_regulation/files/ver2/button_login_base.png" alt="Login with LINE">
+  </a>
 </body>
 </html>
