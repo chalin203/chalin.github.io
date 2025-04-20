@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Login with LINE</title>
+  <meta charset="utf-8">
+  <title>เลือกรูปแบบ</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    .btn {
+      display: block;
+      background-color: #3066BE;
+      color: white;
+      padding: 15px;
+      margin: 10px auto;
+      width: 80%;
+      font-size: 20px;
+      border-radius: 10px;
+      border: none;
+    }
+  </style>
 </head>
-<body style="text-align: center; padding-top: 100px;">
-  <h1>เข้าสู่ระบบด้วย LINE</h1>
-  <a href="https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1657871786&redirect_uri=https%3A%2F%2Fchalin203.github.io%2Fchalin.github.io%2F&state=random1234&scope=profile%20openid&bot_prompt=normal">
-    <img src="https://scdn.line-apps.com/n/line_regulation/files/ver2/button_login_base.png" alt="Login with LINE">
-  </a>
+<body>
+  <h2>ลูกค้าต้องการแบบไหนครับ</h2>
+  <button class="btn" onclick="sendChoice('แบบรายสัปดาห์')">แบบรายสัปดาห์</button>
+  <button class="btn" onclick="sendChoice('แบบรายเดือน')">แบบรายเดือน</button>
+
+  <script>
+    function sendChoice(text) {
+      liff.init({ liffId: "YOUR_LIFF_ID" }).then(() => {
+        if (liff.isInClient()) {
+          liff.sendMessages([{ type: "text", text }])
+            .then(() => liff.closeWindow());
+        } else {
+          alert("เลือก: " + text);
+        }
+      });
+    }
+  </script>
 </body>
 </html>
